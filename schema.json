@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sheldonix/tpull/v1.0.0/schema.json",
+  "title": "tpull-config",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "template_repo": {
+      "type": "string"
+    },
+    "tpull_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "var": {
+            "type": "string",
+            "minLength": 1
+          },
+          "type": {
+            "const": "input"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "default": {},
+          "required": {
+            "type": "boolean"
+          },
+          "validate": {
+            "type": "string"
+          }
+        },
+        "required": ["var", "type", "message"]
+      }
+    },
+    "replacements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "pattern": {
+            "type": "string",
+            "minLength": 1
+          },
+          "replace": {
+            "type": "string"
+          },
+          "transform": {
+            "type": "string",
+            "enum": [
+              "kebab",
+              "snake",
+              "camel",
+              "pascal",
+              "upper",
+              "lower",
+              "upper_words",
+              "lower_words",
+              "constant"
+            ]
+          }
+        },
+        "required": ["files", "pattern", "replace"]
+      }
+    }
+  },
+  "required": ["tpull_version"]
+}

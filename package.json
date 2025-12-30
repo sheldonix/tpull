@@ -1,13 +1,57 @@
 {
   "name": "tpull",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "CLI to pull a GitHub template with variable replacement.",
+  "main": "src/index.js",
+  "type": "module",
+  "bin": {
+    "tpull": "bin/tpull.js"
+  },
   "scripts": {
+    "start": "node bin/tpull.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.26.1"
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "author": "sheldonix",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheldonix/tpull.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sheldonix/tpull/issues"
+  },
+  "homepage": "https://github.com/sheldonix/tpull",
+  "keywords": [
+    "cli",
+    "github",
+    "template",
+    "scaffold",
+    "generator",
+    "tool",
+    "shell",
+    "console",
+    "terminal",
+    "command-line",
+    "node-cli"
+  ],
+  "files": [
+    "bin/",
+    "src/",
+    "schema.json"
+  ],
+  "exports": {
+    ".": "./src/index.js",
+    "./schema.json": "./schema.json"
+  },
+  "packageManager": "pnpm@10.26.1",
+  "dependencies": {
+    "commander": "^14.0.2",
+    "inquirer": "^13.1.0",
+    "tar": "^7.5.2",
+    "yaml": "^2.8.2",
+    "zod": "^4.2.1"
+  }
 }
