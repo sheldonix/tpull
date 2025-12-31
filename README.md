@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/sheldonix/tpull/v1.1.6/docs/logo.svg" alt="tpull logo" width="520" height="120">
+  <img src="https://raw.githubusercontent.com/sheldonix/tpull/v1.1.8/docs/logo.svg" alt="tpull logo" width="520" height="120">
   <p>
     <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/npm/v/tpull.svg" alt="npm version"></a>
     <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/npm/dm/tpull.svg" alt="npm downloads"></a>
@@ -71,8 +71,8 @@ If the template repository contains `tpull-config.yaml`, tpull uses it to prompt
 
 ### Example `tpull-config.yaml`
 ```yaml
-$schema: https://raw.githubusercontent.com/sheldonix/tpull/v1.1.6/schema.json
-tpull_version: 1.1.6
+$schema: https://raw.githubusercontent.com/sheldonix/tpull/v1.1.8/schema.json
+tpull_version: 1.1.8
 name: template-name
 template_repo: https://github.com/owner/repo
 prompts:

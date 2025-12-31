@@ -24,6 +24,8 @@ const GRADIENT_STOPS = [
   [0, 175, 245],
   [0, 130, 255],
 ];
+const ERROR_COLOR = '\x1b[31m';
+const COLOR_RESET = '\x1b[0m';
 
 function buildInfoLine() {
   const description = pkg.description ? ` - ${pkg.description}` : '';
@@ -58,8 +60,36 @@ function formatDuration(ms) {
   return `${minutes}m ${remainderSeconds}s`;
 }
 
+function isCommanderColorEnabled() {
+  if (!process.stderr.isTTY) {
+    return false;
+  }
+  if (Object.prototype.hasOwnProperty.call(process.env, 'NO_COLOR')) {
+    return false;
+  }
+  if (process.env.TERM === 'dumb') {
+    return false;
+  }
+  return true;
+}
+
+function colorizeError(text) {
+  if (!isCommanderColorEnabled()) {
+    return text;
+  }
+  return `${ERROR_COLOR}${text}${COLOR_RESET}`;
+}
+
+function formatCommanderError(text) {
+  const value = String(text ?? '');
+  return value.replace(/^(\s*)error:/i, '$1Error:');
+}
+
 async function run(argv) {
   const program = new Command();
+
+  printBanner();
+  printBoxedLine(buildInfoLine());
 
   program
     .name('tpull')
@@ -68,6 +98,10 @@ async function run(argv) {
     .option('--set <var=value>', 'Set a template variable (repeatable)', collect, [])
     .option('--no-prompt', 'Skip prompts and use defaults')
     .option('--token <token>', 'GitHub access token')
+    .showHelpAfterError()
+    .configureOutput({
+      outputError: (str, write) => write(colorizeError(formatCommanderError(str))),
+    })
     .parse(argv);
 
   const opts = program.opts();
@@ -75,8 +109,6 @@ async function run(argv) {
   const target = args[0];
   const projectName = args[1];
 
-  printBanner();
-  printBoxedLine(buildInfoLine());
   const startedAt = process.hrtime.bigint();
 
   if (target === 'local') {

@@ -70,9 +70,9 @@ async function downloadTarball({ owner, repo, ref, token, filePath, onProgress }
 
 async function resolveLatestRef({ owner, repo, token }) {
   const url = `https://api.github.com/repos/${owner}/${repo}/tags?per_page=1`;
-  const data = await fetchGitHubJson(url, token, 'ERROR: Resolve latest ref failed');
+  const data = await fetchGitHubJson(url, token, 'Resolve latest ref failed');
   if (!Array.isArray(data) || data.length === 0 || !data[0].name) {
-    throw new Error('ERROR: Resolve latest ref failed (no tags found).');
+    throw new Error('Resolve latest ref failed (no tags found).');
   }
 
   return data[0].name;
@@ -80,9 +80,9 @@ async function resolveLatestRef({ owner, repo, token }) {
 
 async function resolveDefaultBranch({ owner, repo, token }) {
   const url = `https://api.github.com/repos/${owner}/${repo}`;
-  const data = await fetchGitHubJson(url, token, 'ERROR: Resolve default branch failed');
+  const data = await fetchGitHubJson(url, token, 'Resolve default branch failed');
   if (!data || !data.default_branch) {
-    throw new Error('ERROR: Resolve default branch failed (missing default_branch).');
+    throw new Error('Resolve default branch failed (missing default_branch).');
   }
 
   return data.default_branch;
