@@ -1,6 +1,6 @@
 {
   "name": "tpull",
-  "version": "1.1.2",
+  "version": "1.1.6",
   "description": "CLI to pull a GitHub template with variable replacement.",
   "main": "src/index.js",
   "type": "module",

@@ -1,4 +1,12 @@
-# tpull
+<div align="center">
+  <img src="https://raw.githubusercontent.com/sheldonix/tpull/v1.1.6/docs/logo.svg" alt="tpull logo" width="520" height="120">
+  <p>
+    <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/npm/v/tpull.svg" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/npm/dm/tpull.svg" alt="npm downloads"></a>
+    <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/node/v/tpull.svg" alt="node version"></a>
+    <a href="./LICENSE"><img src="https://img.shields.io/npm/l/tpull.svg" alt="license"></a>
+  </p>
+</div>
 
 CLI to pull a GitHub template with interactive prompts and variable replacement.
 
@@ -63,8 +71,8 @@ If the template repository contains `tpull-config.yaml`, tpull uses it to prompt
 
 ### Example `tpull-config.yaml`
 ```yaml
-$schema: https://raw.githubusercontent.com/sheldonix/tpull/v1.1.2/schema.json
-tpull_version: 1.1.2
+$schema: https://raw.githubusercontent.com/sheldonix/tpull/v1.1.6/schema.json
+tpull_version: 1.1.6
 name: template-name
 template_repo: https://github.com/owner/repo
 prompts:
@@ -84,7 +92,7 @@ replacements:
     replace: '$1{{project_name}}'
   - files:
       - tpull-config.yaml
-    pattern: '/)template-name/g'
+    pattern: '/\)template-name/g'
     replace: '){{project_name}}'
   - files:
       - src-tauri/tauri.conf.json

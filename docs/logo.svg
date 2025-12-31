@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="120" viewBox="0 0 520 120" role="img" aria-labelledby="title desc">
+  <title id="title">tpull logo</title>
+  <desc id="desc">ASCII logo rendered with colored lines.</desc>
+  <g text-anchor="middle" transform="translate(260 0)">
+    <text x="0" y="6" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="700" dominant-baseline="hanging" xml:space="preserve" fill="#22c55e">########  #######   ##    ##  ##        ##      </text>
+    <text x="0" y="24" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="700" dominant-baseline="hanging" xml:space="preserve" fill="#86efac">   ##     ##    ##  ##    ##  ##        ##      </text>
+    <text x="0" y="42" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="700" dominant-baseline="hanging" xml:space="preserve" fill="#67e8f9">   ##     #######   ##    ##  ##        ##      </text>
+    <text x="0" y="60" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="700" dominant-baseline="hanging" xml:space="preserve" fill="#22d3ee">   ##     ##        ##    ##  ##        ##      </text>
+    <text x="0" y="78" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="700" dominant-baseline="hanging" xml:space="preserve" fill="#60a5fa">   ##     ##        ##    ##  ##        ##      </text>
+    <text x="0" y="96" font-family="SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="16" font-weight="700" dominant-baseline="hanging" xml:space="preserve" fill="#3b82f6">   ##     ##         ######   ########  ########</text>
+  </g>
+</svg>
