@@ -82,11 +82,14 @@ function applyBold(text, stream) {
 }
 
 function printSuccess(message, stream = process.stdout) {
-  const text = String(message ?? '').trim();
-  if (!text) {
-    return;
-  }
+  const text = String(message ?? '');
   const colored = colorize(text, COLOR_GREEN, stream);
+  stream.write(`${colored}\n`);
+}
+
+function printAccent(message, stream = process.stdout) {
+  const text = String(message ?? '');
+  const colored = colorize(text, COLOR_GREEN_LIGHT, stream);
   stream.write(`${colored}\n`);
 }
 
@@ -382,6 +385,7 @@ export {
   applyGradient,
   applyBold,
   printSuccess,
+  printAccent,
   createDownloadUI,
   formatBytes,
 };

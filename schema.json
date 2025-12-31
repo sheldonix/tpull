@@ -67,6 +67,10 @@
           "replace": {
             "type": "string"
           },
+          "failIfNoMatch": {
+            "type": "boolean",
+            "default": true
+          },
           "transform": {
             "type": "string",
             "enum": [

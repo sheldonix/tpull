@@ -21,6 +21,7 @@ const replacementSchema = z
     files: z.array(z.string().min(1)).min(1),
     pattern: z.string().min(1),
     replace: z.string(),
+    failIfNoMatch: z.boolean().optional(),
     // Validate transform values early to catch typos.
     transform: z
       .enum(Object.keys(TRANSFORMS))
@@ -72,7 +73,10 @@ function parseConfigContent(content, sourceName = 'tpull-config.yaml') {
   return {
     tpull_version: result.data.tpull_version,
     prompts,
-    replacements: result.data.replacements || [],
+    replacements: (result.data.replacements || []).map((replacement) => ({
+      ...replacement,
+      failIfNoMatch: replacement.failIfNoMatch !== false,
+    })),
   };
 }
 
