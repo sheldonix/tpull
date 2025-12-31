@@ -247,11 +247,29 @@ function createSpinner(text, stream = process.stderr, color) {
 }
 
 function createProgressBar(total, label, stream = process.stderr, color, options = {}) {
-  const width = 28;
+  const DEFAULT_BAR_WIDTH = 28;
+  const MIN_BAR_WIDTH = 10;
+  const WIDTH_PADDING = 1;
   let current = 0;
   let lastRender = 0;
   const state = { lastLength: 0 };
   const finalTotalOnly = Boolean(options.finalTotalOnly);
+
+  function resolveBarWidth(activeLabel, percentText, detailText) {
+    if (!stream.isTTY) {
+      return DEFAULT_BAR_WIDTH;
+    }
+    const columns = Number(stream.columns);
+    if (!Number.isFinite(columns) || columns <= 0) {
+      return DEFAULT_BAR_WIDTH;
+    }
+    const baseLength = visibleLength(activeLabel)
+      + percentText.length
+      + detailText.length
+      + 7;
+    const maxWidth = Math.max(0, columns - baseLength - WIDTH_PADDING);
+    return Math.min(DEFAULT_BAR_WIDTH, maxWidth);
+  }
 
   function render(force = false, labelOverride, colorOverride, isFinal = false) {
     if (!stream.isTTY) {
@@ -263,14 +281,21 @@ function createProgressBar(total, label, stream = process.stderr, color, options
     }
     lastRender = now;
     const ratio = total > 0 ? Math.min(current / total, 1) : 0;
-    const filled = Math.round(width * ratio);
-    const bar = `${'='.repeat(filled)}${'-'.repeat(width - filled)}`;
-    const percent = total > 0 ? Math.round(ratio * 100) : 0;
     const activeLabel = labelOverride || label;
+    const percentValue = total > 0 ? Math.round(ratio * 100) : 0;
+    const percentText = `${percentValue}%`;
     const detail = isFinal && finalTotalOnly
       ? formatBytes(total)
       : `${formatBytes(current)} / ${formatBytes(total)}`;
-    const text = `${activeLabel} [${bar}] ${percent}% (${detail})`;
+    const barWidth = resolveBarWidth(activeLabel, percentText, detail);
+    const showBar = barWidth >= MIN_BAR_WIDTH;
+    const filled = showBar ? Math.round(barWidth * ratio) : 0;
+    const bar = showBar
+      ? `${'='.repeat(filled)}${'-'.repeat(Math.max(barWidth - filled, 0))}`
+      : '';
+    const text = showBar
+      ? `${activeLabel} [${bar}] ${percentText} (${detail})`
+      : `${activeLabel} ${percentText} (${detail})`;
     const appliedColor = colorOverride || color;
     const colored = appliedColor ? colorize(text, appliedColor, stream) : text;
     renderLine(stream, colored, state);

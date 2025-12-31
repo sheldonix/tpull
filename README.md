@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/sheldonix/tpull/v1.1.8/docs/logo.svg" alt="tpull logo" width="520" height="120">
+  <img src="https://raw.githubusercontent.com/sheldonix/tpull/v1.2.0/docs/logo.svg" alt="tpull logo" width="520" height="120">
   <p>
     <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/npm/v/tpull.svg" alt="npm version"></a>
     <a href="https://www.npmjs.com/package/tpull"><img src="https://img.shields.io/npm/dm/tpull.svg" alt="npm downloads"></a>
@@ -44,7 +44,7 @@ tpull local my-nuxt-app
 Ref examples:
 - `tpull owner/repo@v1.2.3` — tag ref.
 - `tpull owner/repo@main` — branch ref.
-- `tpull owner/repo@feature/add-config` — feature branch ref.
+- `tpull owner/repo@feature/foo` — feature branch ref.
 - `tpull owner/repo@a1b2c3d` — commit SHA ref.
 - `tpull owner/repo@latest` — latest tag.
 - `tpull owner/repo` — default branch (auto-detected, typically `main` or `master`).
@@ -71,8 +71,8 @@ If the template repository contains `tpull-config.yaml`, tpull uses it to prompt
 
 ### Example `tpull-config.yaml`
 ```yaml
-$schema: https://raw.githubusercontent.com/sheldonix/tpull/v1.1.8/schema.json
-tpull_version: 1.1.8
+$schema: https://raw.githubusercontent.com/sheldonix/tpull/v1.2.0/schema.json
+tpull_version: 1.2.0
 name: template-name
 template_repo: https://github.com/owner/repo
 prompts:
@@ -158,6 +158,14 @@ Available transforms (inputs: My App / my-app):
 - `project_name`
 
 `project_name` comes from the positional argument if provided; otherwise it defaults to the repo name and is also used for the output directory.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+[![GitHub](https://img.shields.io/badge/Github-sheldonix%2Ftpull-181717?logo=github)](https://github.com/sheldonix/tpull)
 
 ## License
 [MIT](./LICENSE)
